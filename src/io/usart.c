@@ -4,15 +4,13 @@
 #include <libopencm3/cm3/vector.h>
 #include <libopencm3/stm32/usart.h>
 
-void usart1_isr()
-{
-    usartISR(USART1);
-}
+// These are linked for F0
+void usart1_isr() { usartISR(USART1); }
+void usart2_isr() { usartISR(USART2); }
 
-void usart2_isr()
-{
-    usartISR(USART2);
-}
+// These are linked for F3
+void usart1_exti25_isr() { usartISR(USART1); }
+void usart2_exti26_isr() { usartISR(USART2); }
 
 void usartISR(uint32_t usart)
 {
