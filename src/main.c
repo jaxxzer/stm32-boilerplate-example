@@ -21,7 +21,7 @@ void initUsart();
 
 int main()
 {
-    rcc_clock_setup_in_hsi_out_48mhz();
+    initializeSystemClocks();
 
     initUsart();
 
