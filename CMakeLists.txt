@@ -6,7 +6,7 @@ set(CMAKE_CXX_COMPILER "arm-none-eabi-g++")
 
 set(BOILERPLATE ${PROJECT_SOURCE_DIR}/lib/stm32-boilerplate)
 set(LIBOPENCM3 ${BOILERPLATE}/lib/libopencm3)
-set(LIBOPENCM3_SRC ${LIBOPENCM3}/lib/stm32)
+set(LIBOPENCM3_SRC ${LIBOPENCM3}/lib)
 
 set(COMPILER_FLAGS "-fdata-sections -ffunction-sections -O0 -DNDEBUG -Werror")
 set(LINKER_FLAGS "-nostartfiles -specs=nano.specs -specs=nosys.specs --static -ggdb3 -Wl,--gc-sections -Wl,--start-group -lc -lgcc -lnosys -Wl,--end-group -Wl,-Map=output.map -T ${BOILERPLATE}/src/link/stm32-mem.ld -L ${BOILERPLATE}/lib/libopencm3/lib")
@@ -51,8 +51,10 @@ set(MAIN_SRC
   src/io/usart.c
   ${GPIO_SRC}
   ${RCC_SRC}
-  ${LIBOPENCM3_SRC}/common/usart_common_all.c
-  ${LIBOPENCM3_SRC}/common/usart_common_v2.c
+  ${LIBOPENCM3_SRC}/stm32/common/usart_common_all.c
+  ${LIBOPENCM3_SRC}/stm32/common/usart_common_v2.c
+  ${LIBOPENCM3_SRC}/cm3/nvic.c
+  ${LIBOPENCM3_SRC}/cm3/vector.c
 )
 
 set(COMMON_SRC ${BOILERPLATE}/lib/libopencm3/lib/cm3/vector.c)
